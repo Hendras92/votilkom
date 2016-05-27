@@ -82,6 +82,7 @@ class Events_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+
 }
 
 /* End of file Events_model.php */
