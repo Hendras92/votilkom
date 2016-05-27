@@ -36,37 +36,37 @@
 				<li>
 					<a class="bg-lblue" href="#">
 						<span class="link-hover"></span>
-						<span class="main-text">Home</span>
+						<span class="text">Home</span>
 					</a>
 				</li>
 				<li>
-					<a class="bg-red" href="<?php echo base_url();?>index.php/C_manage">
+					<a class="bg-red" href="<?php echo base_url();?>index.php/manage">
 						<span class="link-hover"></span>
-						<span class="main-text">Manage</span>
+						<span class="text">Manage</span>
 					</a>
 				</li>
 				<li>
-					<a class="bg-green" href="#">
+					<a class="bg-green" href="<?php echo base_url();?>index.php/manage/create">
 						<span class="link-hover"></span>
-						<span class="main-text">Create Vote</span>
+						<span class="text">Create Vote</span>
 					</a>
 				</li>
 				<li>
 					<a class="bg-yellow" href="#">
 						<span class="link-hover"></span>
-						<span class="main-text">About Us</span>
+						<span class="text">About Us</span>
 					</a>
 				</li>
 				<li>
 					<a class="bg-orange" href="#">
 						<span class="link-hover"></span>
-						<span class="main-text">Contact Us</span>
+						<span class="text">Contact Us</span>
 					</a>
 				</li>
 				<li>
 					<a class="bg-rose" href="#">
 						<span class="link-hover"></span>
-						<span class="main-text">Login</span>
+						<span class="text">Login</span>
 					</a>
 				</li>
 			</ul>

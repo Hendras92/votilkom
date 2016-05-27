@@ -6,3 +6,4 @@
 	$this->load->view('V_footer');     /*ui-26*/
 	
 	
+?>
