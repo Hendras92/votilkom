@@ -7,6 +7,7 @@ class Manage extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Events_model');
+        $this->load->model('Options_event_model');
          $this->load->library('form_validation');       
     }
 	public function index()
@@ -76,7 +77,7 @@ class Manage extends CI_Controller {
 
             $this->Events_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('manage'));
+            redirect(site_url('manage/options'));
         }
     }
 
@@ -147,6 +148,45 @@ class Manage extends CI_Controller {
         }
     }
 
+    public function options() 
+    {
+        
+        $data = array(
+            'button' => 'options',
+            'action' => site_url('manage/create_options'),
+        'id_events' => set_value('id_events'),
+        'id_options' => set_value('id_options'),
+        'name_options' => set_value('name_options'),
+        'img_options' => set_value('img_options'),
+        'deskripsi' => set_value('deskripsi'),
+        
+    );
+        $this->load->view('V_create_form_options', $data);
+    }
+
+    public function create_options() 
+    {
+        
+        $this->_rulesoptions();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+        'id_events' => $this->input->post('id_events',TRUE),
+        'id_options' => $this->input->post('id_options',TRUE),
+        'name_options' => $this->input->post('name_options',TRUE),
+        'img_options' => $this->input->post('img_options',TRUE),
+        'deskripsi' => $this->input->post('deskripsi',TRUE),
+        );
+
+            $this->Options_event_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('manage'));
+        }
+    }
+
+
 	public function delete($id) 
     {
         $row = $this->Events_model->get_by_id($id);
@@ -171,6 +211,17 @@ class Manage extends CI_Controller {
        $this->form_validation->set_rules('closed_events', 'closed events', 'trim|required');
 
        $this->form_validation->set_rules('id_events', 'id_events', 'trim');
+       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+    public function _rulesoptions() 
+    {
+       $this->form_validation->set_rules('name_options', 'name options', 'trim|required');
+       $this->form_validation->set_rules('img_options', 'type events', 'trim|required');
+       $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
+       
+       $this->form_validation->set_rules('id_events', 'id_events', 'trim|required');
+       $this->form_validation->set_rules('id_options', 'id_options', 'trim');
        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

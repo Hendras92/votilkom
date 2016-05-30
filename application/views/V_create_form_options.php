@@ -41,43 +41,36 @@
 								<!-- Ui Form -->
 								<div class="ui-form">
 									<!-- Heading -->
-									<h2>Update Vote</h2>
+									<h2><?php echo $button ?> Vote</h2>
 									<!-- Form -->
-									<form action="<?php echo base_url();?>index.php/manage/update_action" method="post">
+									<form action="<?php echo $action; ?>" method="post">
 										<!-- UI Input -->
 										<div class="ui-input">
 											<!-- Input Box -->
-											<input type="text" name="name_events" value="<?php echo $name_events; ?>" class="form-control" />
+											<input type="text" name="name_options" placeholder="Name This Option" class="form-control" />
 										</div>
+									
 										<div class="ui-input">
-                                            <a href="javascript:NewCssCal('pick1','yyyymmdd')">
-											<input type="text" id="pick1" name="date_events" value="<?php echo $date_events; ?>" class="form-control" />
-											</a>
+											<input type="text" name="img_options" placeholder="Upload Image" class="form-control" />
+								
 										</div>
+
 										<div class="ui-input">
-										    <a href="javascript:NewCssCal('pick2','yyyymmdd')">
-											<input type="text" id="pick2" name="closed_events" value="<?php echo $closed_events; ?>" class="form-control" />
-											</a>
+											<input type="text" name="deskripsi" placeholder="Description This Option" class="form-control" />
+								
 										</div>
+
+
 										<div class="ui-input">
-											<input type="text" name="type_events" value="<?php echo $type_events; ?>" class="form-control" />
+											<input type="text" name="id_events" placeholder="Id Events" class="form-control" />
 								
 										</div>
 										<div class="ui-input">
-											<input type="text" name="link_events" value="<?php echo $link_events; ?>" class="form-control" />
+											<input type="text" name="id_options" placeholder="Id Options" class="form-control" />
 								
 										</div>
-										<div class="ui-input">
-											<input type="text" name="about_events" value="<?php echo $about_events; ?>" class="form-control" />
-								
-										</div>
-										<div class="ui-input">
-											<input type="text" name="id_events" value="<?php echo $id_events; ?>" class="form-control" />
-								
-										</div>
-								
-										<button type="submit" class="btn btn-red btn-lg btn-block">Update Vote</button>
-										
+										 <button type="submit" class="btn btn-red btn-lg btn-block">Add Options</button> 
+										<!--<input type="submit" name="submit" value="Create" class="btn btn-red btn-lg btn-block" >-->
 									</form>
 								</div>
 							</div>
