@@ -79,6 +79,7 @@ class Manage extends CI_Controller {
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('manage/options'));
         }
+        
     }
 
     public function read($id) 
@@ -151,40 +152,51 @@ class Manage extends CI_Controller {
     public function options() 
     {
         
-        $data = array(
-            'button' => 'options',
-            'action' => site_url('manage/create_options'),
-        'id_events' => set_value('id_events'),
-        'id_options' => set_value('id_options'),
-        'name_options' => set_value('name_options'),
-        'img_options' => set_value('img_options'),
-        'deskripsi' => set_value('deskripsi'),
-        
-    );
-        $this->load->view('V_create_form_options', $data);
-    }
-
-    public function create_options() 
-    {
-        
-        $this->_rulesoptions();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-        'id_events' => $this->input->post('id_events',TRUE),
-        'id_options' => $this->input->post('id_options',TRUE),
-        'name_options' => $this->input->post('name_options',TRUE),
-        'img_options' => $this->input->post('img_options',TRUE),
-        'deskripsi' => $this->input->post('deskripsi',TRUE),
-        );
-
-            $this->Options_event_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('manage'));
+       if($_POST==NULL) {
+            $this->load->view('V_multi_opt');
+        }else {
+            redirect('Manage/create_options/'.$_POST['banyak_data']);
         }
     }
+
+    public function create_options($banyak_data=0) 
+    {
+        $this->load->library('upload');
+       
+       if($_POST==NULL) {
+            $data['banyak_data'] = $banyak_data;
+            $this->load->view('V_create_form_options',$data);
+        }else {
+            foreach($_POST['data'] as $d){
+                $this->db->insert('tbl_options_event',$d);
+                $this->do_upload_multi;
+            }
+            redirect('manage');
+        }
+    }
+    
+    public function do_upload_multi($banyak_data=0)
+    {        
+             $this->load->library('upload');
+              $data['banyak_data'] = $banyak_data;
+             //Configure upload.
+             $this->upload->initialize(array(
+             "allowed_types" => "gif|jpg|png|jpeg",
+            "upload_path"   => "./uploads/"
+             ));
+        
+             //Perform upload.
+             if($this->upload->do_upload("images")) {
+                 $uploaded = $this->upload->data();
+                 echo '<pre>';
+            var_export($uploaded);
+            echo '</pre>';
+             }else{
+             die('GAGAL UPLOAD');
+    }
+  }
+  
+
 
 
 	public function delete($id) 

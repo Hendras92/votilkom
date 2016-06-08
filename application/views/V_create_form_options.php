@@ -41,35 +41,39 @@
 								<!-- Ui Form -->
 								<div class="ui-form">
 									<!-- Heading -->
-									<h2><?php echo $button ?> Vote</h2>
+									
 									<!-- Form -->
-									<form action="<?php echo $action; ?>" method="post">
+									
+									<form action="" method="post">
 										<!-- UI Input -->
+										<?php for($i=1;$i<=$banyak_data;$i++): ?>
+										<h2>Option Vote</h2>
 										<div class="ui-input">
 											<!-- Input Box -->
-											<input type="text" name="name_options" placeholder="Name This Option" class="form-control" />
+											<input type="text" name="data[<?= $i ?>][name_options]" placeholder="Name This Option" class="form-control" />
 										</div>
 									
 										<div class="ui-input">
-											<input type="text" name="img_options" placeholder="Upload Image" class="form-control" />
+											<input type="file" name="data[<?= $i ?>][img_options]" placeholder="Upload Image" class="form-control" value="upload" />
 								
 										</div>
 
 										<div class="ui-input">
-											<input type="text" name="deskripsi" placeholder="Description This Option" class="form-control" />
+											<input type="text" name="data[<?= $i ?>][deskripsi]" placeholder="Description This Option" class="form-control" />
 								
 										</div>
 
 
 										<div class="ui-input">
-											<input type="text" name="id_events" placeholder="Id Events" class="form-control" />
+											<input type="text" name="data[<?= $i ?>][id_events]" placeholder="Id_events" class="form-control" />
 								
 										</div>
 										<div class="ui-input">
-											<input type="text" name="id_options" placeholder="Id Options" class="form-control" />
+											<input type="text" name="data[<?= $i ?>][id_options]" placeholder="Id Options" class="form-control" />
 								
 										</div>
-										 <button type="submit" class="btn btn-red btn-lg btn-block">Add Options</button> 
+										<?php endfor ?>
+										 <button type="submit" class="btn btn-red btn-lg btn-block" value="upload" name="upload">Add Options</button> 
 										<!--<input type="submit" name="submit" value="Create" class="btn btn-red btn-lg btn-block" >-->
 									</form>
 								</div>

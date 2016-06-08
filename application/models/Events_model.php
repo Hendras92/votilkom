@@ -62,11 +62,20 @@ class Events_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    // insert data
+    //get last data id event from insert event
+     function getLastInserted() {
+        $this->db->insert_id();
+
+        /*$query ="SELECT id_events as maxID from tbl_events where id_events = LAST_INSERT_ID()";
+        return $query;*/
+    }
+
+    // insert data events
     function insert($data)
     {
         $this->db->insert($this->table, $data);
     }
+
 
     // update data
     function update($id, $data)

@@ -7,7 +7,7 @@ class Options_event_model extends CI_Model
 {
 
     public $table = 'tbl_options_event';
-    public $id = '';
+    public $id_options = 'id_options';
     public $order = 'DESC';
 
     function __construct()
@@ -23,13 +23,13 @@ class Options_event_model extends CI_Model
     }
 
     // get data by id
-    function get_by_id($id)
+    function get_by_id($id_options)
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
     
-     function get_by_events($id)
+     function get_by_events($id_options)
     {
     	$query = "SELECT name_options FROM tbl_events JOIN tbl_options_event ON tbl_events.id_events = tbl_options_event.id_events
     	WHERE tbl_options_event.id_events =$id";
@@ -76,16 +76,28 @@ class Options_event_model extends CI_Model
     // update data
     function update($id, $data)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where($this->id, $id_options);
         $this->db->update($this->table, $data);
     }
 
     // delete data
     function delete($id)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where($this->id, $id_options);
         $this->db->delete($this->table);
     }
+
+    function update_foto($nm_foto){
+            $id_options = $this->input->post('id_options');
+            $img_options = $nm_foto;
+            $data = array(
+            
+                'img_options' => $img_options,
+            
+            );
+            $this->db->where('id_options',$id_options);
+            $this->db->update('tbl_options_event',$data);
+        }
 
 
 }
